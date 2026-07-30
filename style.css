@@ -1,0 +1,39 @@
+body{
+    margin:0;
+    background:#0b1220;
+    color:white;
+    font-family:Arial,sans-serif;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+}
+
+.box{
+    width:500px;
+    text-align:center;
+    padding:30px;
+    background:#111827;
+    border-radius:20px;
+    box-shadow:0 0 30px cyan;
+}
+
+button{
+    padding:15px 35px;
+    font-size:18px;
+    border:none;
+    border-radius:10px;
+    background:#00bcd4;
+    color:white;
+    cursor:pointer;
+}
+
+#status{
+    margin-top:20px;
+    font-size:22px;
+    color:#00ff99;
+}
+
+h1{
+    color:#00e5ff;
+}

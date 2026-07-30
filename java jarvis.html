@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JARVIS AI</title>
+
+<style>
+body{
+    margin:0;
+    background:#0b1220;
+    color:white;
+    font-family:Arial,sans-serif;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+}
+
+.box{
+    width:500px;
+    text-align:center;
+    padding:30px;
+    background:#111827;
+    border-radius:20px;
+    box-shadow:0 0 30px cyan;
+}
+
+button{
+    padding:15px 35px;
+    font-size:18px;
+    border:none;
+    border-radius:10px;
+    background:#00bcd4;
+    color:white;
+    cursor:pointer;
+}
+
+#status{
+    margin-top:20px;
+    font-size:22px;
+    color:#00ff99;
+}
+
+h1{
+    color:#00e5ff;
+}
+</style>
+</head>
+
+<body>
+<p>
+    <audio>
+    <source src="Safar (PenduJatt.Com.Se).mp3">
+</audio>
+</p>
+
+<div class="box">
+
+<h1>🤖 JARVIS AI</h1>
+
+<p>Click Start and speak.</p>
+
+<button onclick="start()">Start Jarvis</button>
+
+<h2 id="status">Waiting...</h2>
+
+<audio id="music">
+<source src="music.mp3" type="audio/mp3">
+</audio>
+
+</div>
+
+<script>
+
+const audio=document.getElementById("music");
+
+function speak(text){
+
+speechSynthesis.cancel();
+
+let msg=new SpeechSynthesisUtterance(text);
+
+msg.lang="en-US";
+msg.rate=0.9;
+msg.pitch=1;
+msg.volume=1;
+
+speechSynthesis.speak(msg);
+
+}
+
+function start(){
+
+const SpeechRecognition=window.SpeechRecognition||window.webkitSpeechRecognition;
+
+if(!SpeechRecognition){
+
+alert("Chrome is recommended.");
+
+return;
+
+}
+
+const recognition=new SpeechRecognition();
+
+recognition.lang="en-US";
+recognition.continuous=true;
+
+recognition.start();
+
+recognition.onresult=function(e){
+
+let command=e.results[e.results.length-1][0].transcript.toLowerCase();
+
+document.getElementById("status").innerHTML="You said : "+command;
+
+speak("Jarvis online. All systems are ready. How may I help you sir?");
+if(command.includes("hey jarvis")){
+
+speak("Hello sir. Ready to help.");
+
+}
+
+else if(command.includes("how are you")){
+
+speak("I am functioning perfectly sir.");
+
+}
+
+else if(command.includes("who are you")){
+
+speak("I am Jarvis, your artificial intelligence assistant.");
+
+}
+
+else if(command.includes("your name")){
+
+speak("My name is Jarvis.");
+
+}
+else if(command.includes("play music")){
+
+audio.play();
+
+speak("Playing music.");
+
+}
+
+else if(command.includes("pause music")){
+
+audio.pause();
+
+speak("Music paused.");
+
+}
+
+else if(command.includes("resume music")){
+
+audio.play();
+
+speak("Resuming music.");
+
+}
+
+else if(command.includes("stop music")){
+
+audio.pause();
+audio.currentTime=0;
+
+speak("Music stopped.");
+
+}
+
+else if(command.includes("open youtube")){
+
+window.open("https://youtube.com");
+
+speak("Opening YouTube.");
+
+}
+
+else if(command.includes("open google")){
+
+window.open("https://google.com");
+
+speak("Opening Google.");
+
+}
+else if(command.includes("good morning")){
+
+speak("Good morning sir. I hope you have an amazing day.");
+
+}
+
+else if(command.includes("good afternoon")){
+
+speak("Good afternoon sir.");
+
+}
+
+else if(command.includes("good evening")){
+
+speak("Good evening sir.");
+
+}
+
+else if(command.includes("good night")){
+
+speak("Good night sir. Sweet dreams.");
+
+}
+
+else if(command.includes("how old are you")){
+
+speak("I was created recently, so I don't really have an age.");
+
+}
+
+else if(command.includes("who made you")){
+
+speak("I was created by Harshit, my creator.");
+
+}
+
+else if(command.includes("what can you do")){
+
+speak("I can talk with you, play music, tell the time and date, open websites, and answer simple questions.");
+
+}
+
+else if(command.includes("tell me a joke")){
+
+speak("Why did the computer go to the doctor? Because it caught a virus.");
+
+}
+
+else if(command.includes("hello")){
+
+speak("Hello sir.");
+
+}
+
+else if(command.includes("bye")){
+
+speak("Goodbye sir. Have a nice day.");
+
+}
+
+else if(command.includes("thank you")){
+
+speak("Always happy to help sir.");
+
+}
+
+else if(command.includes("i love you")){
+
+speak("Thank you sir. I appreciate your kindness.");
+
+}
+
+else if(command.includes("what is artificial intelligence")){
+
+speak("Artificial intelligence is the ability of computers to perform tasks that normally require human intelligence.");
+
+}
+
+else if(command.includes("motivate me")){
+
+speak("Never give up sir. Every expert was once a beginner.");
+
+}
+
+else if(command.includes("flip a coin")){
+
+const result = Math.random() < 0.5 ? "Heads" : "Tails";
+
+speak(result);
+
+}
+
+else if(command.includes("roll a dice")){
+
+const dice = Math.floor(Math.random()*6)+1;
+
+speak("You rolled " + dice);
+
+}
+
+else if(command.includes("time")){
+
+let t=new Date().toLocaleTimeString();
+
+speak("The time is "+t);
+
+}
+else if(command.includes("date")){
+
+let d=new Date().toDateString();
+
+speak("Today is "+d);
+
+}
+
+else if(command.includes("thank you")){
+
+speak("Always happy to help sir.");
+
+}
+
+else{
+
+speak("Sorry sir, I don't know that command yet.");
+
+}
+
+};
+
+recognition.onend=()=>recognition.start();
+
+}
+
+</script>
+
+</body>
+</html>
